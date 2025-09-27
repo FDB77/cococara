@@ -224,7 +224,7 @@ main li{ margin-bottom:.45em; }
    SECTIONS
 ========================= */
 section {
-  padding: clamp(56px, 9vw, 112px) 0;
+  padding: clamp(44px, 7vw, 92px) 0;
   scroll-margin-top: 96px;
 }
 section h2 {
@@ -238,8 +238,8 @@ section h2 {
 /* Scroll reveal */
 .reveal{
   opacity:0;
-  transform: translateY(60px);
-  transition: opacity .9s ease, transform .9s cubic-bezier(.19,1,.22,1);
+  transform: translateY(46px);
+  transition: opacity .78s ease, transform .78s cubic-bezier(.19,1,.22,1);
 }
 .reveal.is-visible{
   opacity:1;
@@ -492,15 +492,19 @@ section h2::before{
   .nav{ align-items:center; }
   .nav-links{
     position:absolute;
-    inset:calc(100% + 12px) clamp(16px, 6vw, 28px) auto;
-    background: color-mix(in oklab,var(--bg) 96%, transparent);
-    border:1px solid color-mix(in oklab,var(--stroke) 80%, transparent);
+    top:calc(100% + 12px);
+    right:clamp(16px, 6vw, 28px);
+    left:auto;
+    width:min(300px, calc(100vw - clamp(32px, 12vw, 56px)));
+    background: var(--bg);
+    border:1px solid var(--stroke);
     border-radius: clamp(16px, 4vw, 20px);
     box-shadow: var(--shadow);
     padding:18px clamp(18px, 5vw, 28px) 20px;
     flex-direction:column;
     align-items:stretch;
     gap:16px;
+    z-index:30;
     transform: translateY(-8px);
     opacity:0;
     visibility:hidden;
