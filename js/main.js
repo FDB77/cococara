@@ -25,6 +25,43 @@ if (btn) {
   });
 }
 
+/* Mobile navigation */
+(() => {
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('primaryNav');
+  if (!toggle || !links) { return; }
+
+  const closeMenu = () => {
+    links.classList.remove('is-open');
+    toggle.classList.remove('is-active');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.addEventListener('click', () => {
+    const open = !links.classList.contains('is-open');
+    links.classList.toggle('is-open', open);
+    toggle.classList.toggle('is-active', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      // trap focus start on first link for accessibility
+      const firstLink = links.querySelector('a, button');
+      if (firstLink) { firstLink.focus({ preventScroll: true }); }
+    }
+  });
+
+  addEventListener('resize', () => {
+    if (matchMedia('(min-width: 821px)').matches) {
+      closeMenu();
+    }
+  });
+
+  links.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (toggle.classList.contains('is-active')) { closeMenu(); }
+    });
+  });
+})();
+
 /* Shrink header on scroll */
 const header = document.getElementById('header');
 let last = 0;
